@@ -1,0 +1,760 @@
+{
+  "version": "1.0",
+  "description": "Skill activation triggers for Claude Code. Controls when skills automatically suggest or block actions.",
+  "skills": {
+    "article-extractor": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Extract clean article content from URLs without ads or clutter",
+      "promptTriggers": {
+        "keywords": ["article", "blog", "extract", "download", "save", "URL", "web content", "readability"],
+        "intentPatterns": [
+          "extract.*(?:article|blog|content).*(?:from|at).*(?:url|http|link)",
+          "download.*(?:article|blog post|content)",
+          "save.*(?:article|blog).*(?:as|to).*text",
+          "get.*(?:clean|readable).*(?:article|content)",
+          "remove.*(?:ads|clutter|navigation).*(?:from|article)"
+        ]
+      }
+    },
+    "backend-dev-guidelines": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Node.js/Express/TypeScript backend development patterns and architecture",
+      "promptTriggers": {
+        "keywords": ["route", "controller", "service", "repository", "middleware", "Express", "Prisma", "Sentry", "Zod", "API", "endpoint", "BaseController", "validation", "unifiedConfig"],
+        "intentPatterns": [
+          "create.*(?:route|endpoint|controller|service|repository|middleware)",
+          "(?:add|implement|build).*(?:api|backend|express)",
+          "(?:database|prisma).*(?:query|operation|access)",
+          "(?:error|sentry).*(?:tracking|handling|monitoring)",
+          "(?:validate|validation).*(?:input|zod|schema)",
+          "(?:backend|express|node).*(?:best practice|pattern|guideline)"
+        ]
+      }
+    },
+    "code-review-excellence": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Effective code review practices for constructive feedback and quality",
+      "promptTriggers": {
+        "keywords": ["review", "pull request", "PR", "feedback", "code quality", "checklist", "standards", "mentor"],
+        "intentPatterns": [
+          "review.*(?:code|pull request|pr|changes)",
+          "(?:provide|give).*feedback.*(?:on|for).*(?:code|pr)",
+          "(?:establish|create|improve).*(?:review|quality).*standard",
+          "how.*(?:review|give feedback|mentor).*(?:code|developer)",
+          "(?:check|verify).*(?:code quality|best practice|security)"
+        ]
+      }
+    },
+    "condition-based-waiting": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Replace arbitrary timeouts with condition polling to eliminate flaky tests",
+      "promptTriggers": {
+        "keywords": ["flaky", "race condition", "timeout", "timing", "waitFor", "intermittent", "sleep", "delay"],
+        "intentPatterns": [
+          "(?:flaky|intermittent|unstable).*test",
+          "race.*condition",
+          "test.*(?:sometimes|occasionally).*(?:fail|pass)",
+          "(?:arbitrary|random).*(?:timeout|delay|sleep)",
+          "wait.*(?:for|until).*(?:condition|state|event)",
+          "(?:timing|async).*(?:issue|problem|dependency)"
+        ]
+      }
+    },
+    "debugging-strategies": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Systematic debugging techniques and tools for tracking down bugs",
+      "promptTriggers": {
+        "keywords": ["debug", "bug", "error", "investigate", "troubleshoot", "trace", "profile", "stack trace", "breakpoint"],
+        "intentPatterns": [
+          "(?:debug|investigate|troubleshoot|track down).*(?:bug|error|issue|problem)",
+          "(?:why|what).*(?:causing|breaking|failing|not working)",
+          "(?:performance|memory).*(?:issue|leak|problem)",
+          "(?:profile|analyze).*(?:performance|code|execution)",
+          "can't figure out.*(?:why|what|where)",
+          "(?:reproduce|isolate).*(?:bug|error|issue)"
+        ]
+      }
+    },
+    "defense-in-depth": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Validate at every layer to make bugs structurally impossible",
+      "promptTriggers": {
+        "keywords": ["validation", "invalid data", "input validation", "defensive", "guard", "layer"],
+        "intentPatterns": [
+          "(?:invalid|bad|incorrect).*data.*(?:cause|causing|broke)",
+          "(?:validate|check|verify).*(?:input|data).*(?:at|before|every)",
+          "(?:multiple|layered|defense).*(?:validation|check)",
+          "(?:guard|protect).*against.*(?:invalid|bad|malicious)",
+          "bug.*(?:impossible|prevent|structurally)",
+          "validation.*(?:layer|boundary|entry point)"
+        ]
+      }
+    },
+    "dispatching-parallel-agents": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Dispatch multiple agents to investigate independent problems concurrently",
+      "promptTriggers": {
+        "keywords": ["parallel", "concurrent", "multiple failures", "independent", "dispatch", "agents"],
+        "intentPatterns": [
+          "multiple.*(?:failure|bug|issue|problem).*(?:independent|unrelated|different)",
+          "(?:parallel|concurrent).*(?:investigation|fix|debug)",
+          "(?:dispatch|spawn|create).*(?:agent|task).*(?:for each|per)",
+          "(?:3|three|several|many).*(?:failing test|broken|issue).*(?:file|subsystem)",
+          "investigate.*(?:all|multiple).*(?:at once|parallel|concurrently)"
+        ]
+      }
+    },
+    "docs-review": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Review documentation for compliance with writing style guide",
+      "promptTriggers": {
+        "keywords": ["documentation", "docs", "review", "style guide", "markdown", "writing", "compliance"],
+        "intentPatterns": [
+          "review.*(?:doc|documentation|markdown|md)",
+          "(?:check|verify).*(?:doc|documentation).*(?:style|compliance|standard)",
+          "(?:improve|fix).*(?:doc|documentation).*(?:quality|writing)",
+          "documentation.*(?:review|feedback|critique)",
+          "(?:style guide|writing standard).*(?:check|compliance)"
+        ]
+      }
+    },
+    "docs-write": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Write documentation following conversational and user-focused style",
+      "promptTriggers": {
+        "keywords": ["write", "create", "documentation", "docs", "guide", "tutorial", "readme", "markdown"],
+        "intentPatterns": [
+          "(?:write|create|draft).*(?:doc|documentation|guide|tutorial)",
+          "(?:add|update|improve).*(?:doc|documentation|readme)",
+          "document.*(?:how to|feature|api|function)",
+          "(?:need|want).*(?:doc|documentation).*(?:for|about)",
+          "create.*(?:guide|tutorial|readme|markdown)"
+        ]
+      }
+    },
+    "error-handling-patterns": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Master error handling patterns across languages including exceptions, Result types, and graceful degradation",
+      "promptTriggers": {
+        "keywords": ["error handling", "exception", "try catch", "result type", "error propagation", "circuit breaker", "retry", "graceful degradation", "error recovery", "fault tolerant"],
+        "intentPatterns": [
+          "how (?:do|should) (?:i|we) handle errors",
+          "implement error handling",
+          "catch.*error",
+          "error handling (?:pattern|strategy|best practice)",
+          "retry.*logic",
+          "circuit breaker",
+          "fallback.*error",
+          "improve.*reliability"
+        ]
+      }
+    },
+    "error-tracking": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Add Sentry v8 error tracking and performance monitoring with mandatory error capture",
+      "promptTriggers": {
+        "keywords": ["sentry", "error tracking", "performance monitoring", "captureException", "error capture", "BaseController", "workflow error", "cron job", "database performance", "transaction tracking"],
+        "intentPatterns": [
+          "add.*sentry",
+          "track.*error",
+          "monitor.*performance",
+          "create.*(?:controller|route|cron)",
+          "instrument.*cron",
+          "database.*performance",
+          "workflow.*error",
+          "error.*logging"
+        ]
+      }
+    },
+    "executing-plans": {
+      "type": "workflow",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Execute implementation plans in controlled batches with review checkpoints",
+      "promptTriggers": {
+        "keywords": ["execute plan", "implementation plan", "run plan", "follow plan", "batch execution", "plan file"],
+        "intentPatterns": [
+          "(?:execute|run|implement|follow).*(?:the )?plan",
+          "have.*plan.*execute",
+          "implement.*in.*batch",
+          "work through.*plan",
+          "step.*through.*implementation"
+        ]
+      }
+    },
+    "file-organizer": {
+      "type": "utility",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Organize files and folders by understanding context, finding duplicates, and suggesting structures",
+      "promptTriggers": {
+        "keywords": ["organize files", "messy downloads", "duplicate files", "cleanup", "tidy files", "folder structure", "sort files", "file organization", "find duplicates"],
+        "intentPatterns": [
+          "(?:organize|organise|tidy|clean|sort).*files",
+          "(?:organize|organise).*folder",
+          "messy.*download",
+          "find.*duplicate",
+          "can't find.*file",
+          "folder.*structure",
+          "cleanup.*director"
+        ]
+      }
+    },
+    "finishing-a-development-branch": {
+      "type": "workflow",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Guide completion of development work with options for merge, PR, or cleanup",
+      "promptTriggers": {
+        "keywords": ["finish branch", "complete work", "merge branch", "create PR", "done implementing", "ready to merge", "wrap up development"],
+        "intentPatterns": [
+          "(?:finish|complete|wrap up).*(?:branch|work|development)",
+          "ready.*(?:merge|PR|pull request)",
+          "(?:merge|integrate).*back",
+          "create.*pull request",
+          "done.*(?:implementing|coding|development)",
+          "what.*do.*next"
+        ]
+      }
+    },
+    "frontend-dev-guidelines": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Modern React/TypeScript patterns with Suspense, lazy loading, MUI v7, and TanStack Router",
+      "promptTriggers": {
+        "keywords": ["react", "component", "frontend", "suspense", "lazy load", "useSuspenseQuery", "MUI", "styling", "routing", "TanStack", "typescript", "performance", "data fetching"],
+        "intentPatterns": [
+          "create.*(?:component|page|feature)",
+          "fetch.*data",
+          "(?:setup|configure).*rout",
+          "style.*component",
+          "react.*component",
+          "lazy.*load",
+          "suspense",
+          "optimize.*performance",
+          "frontend.*code",
+          "mui.*component"
+        ]
+      }
+    },
+    "grounding": {
+      "type": "recovery",
+      "enforcement": "block",
+      "priority": "critical",
+      "description": "Recovery protocol when Claude drifts, loses memory context, or ignores preferences",
+      "promptTriggers": {
+        "keywords": ["grounding", "drifting", "check yourself", "re-read instructions", "lost context", "check memory", "tone", "format"],
+        "intentPatterns": [
+          "grounding",
+          "(?:you're|you are) drift",
+          "check (?:yourself|memory|preferences)",
+          "re-?read.*(?:instruction|preference)",
+          "lost.*context",
+          "gone off track",
+          "not following.*preference"
+        ]
+      }
+    },
+    "handoff": {
+      "type": "utility",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Generate compact handoff summary for seamless chat transitions",
+      "promptTriggers": {
+        "keywords": ["handoff", "wrap up", "switch chats", "context is long", "summarise", "fresh start", "new chat", "continue later"],
+        "intentPatterns": [
+          "handoff",
+          "wrap.*up",
+          "switch.*chat",
+          "context.*(?:long|getting long)",
+          "summari[sz]e.*(?:for|this)",
+          "need.*fresh (?:start|chat)",
+          "new.*chat",
+          "continue.*(?:later|another chat)"
+        ]
+      }
+    },
+    "project-builder": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Guide setup of new Claude Projects through Socratic discovery process",
+      "promptTriggers": {
+        "keywords": ["new project", "create project", "setup project", "project template", "configure project", "project setup", "initialize project"],
+        "intentPatterns": [
+          "(?:new|create|setup|initialize|configure).*(?:project|workspace)",
+          "project.*(?:template|configuration|setup)",
+          "setting up.*project",
+          "start.*new project"
+        ]
+      }
+    },
+    "receiving-code-review": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Process code review feedback with technical rigor before implementing suggestions",
+      "promptTriggers": {
+        "keywords": ["code review", "review feedback", "feedback from", "implement feedback", "review comments", "fix items", "address feedback"],
+        "intentPatterns": [
+          "(?:received|got|have).*(?:code review|feedback|review comments)",
+          "(?:implement|address|fix).*(?:feedback|review|suggestions)",
+          "reviewer (?:said|suggested|asked|commented)",
+          "fix.*items.*[0-9]",
+          "review.*(?:from|by)"
+        ]
+      }
+    },
+    "requesting-code-review": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Request code review from subagent to verify implementation meets requirements",
+      "promptTriggers": {
+        "keywords": ["request review", "code review", "review my code", "review this", "review before merge", "review implementation", "check my work"],
+        "intentPatterns": [
+          "(?:request|need|want).*(?:code review|review)",
+          "review.*(?:code|implementation|changes|work)",
+          "(?:verify|check|validate).*(?:implementation|code|work)",
+          "before.*(?:merge|merging|commit)",
+          "completed.*(?:task|feature|implementation)"
+        ]
+      }
+    },
+    "root-cause-tracing": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Trace bugs backward through call stack to find original trigger",
+      "promptTriggers": {
+        "keywords": ["root cause", "trace error", "trace bug", "why is this", "where does this come from", "original cause", "trace back", "call stack"],
+        "intentPatterns": [
+          "(?:root cause|original cause|source of|where.*(?:come from|originate))",
+          "(?:trace|track).*(?:back|backward|error|bug)",
+          "(?:deep|nested).*(?:error|bug|stack)",
+          "error.*(?:deep|stack|call chain)",
+          "why (?:is this|does this).*(?:happening|occurring|wrong)",
+          "invalid.*(?:data|value).*from"
+        ]
+      }
+    },
+    "route-tester": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Test authenticated routes using cookie-based authentication and verify functionality",
+      "promptTriggers": {
+        "keywords": ["test route", "test endpoint", "test api", "test auth", "route test", "endpoint test", "test request", "authenticate route"],
+        "intentPatterns": [
+          "test.*(?:route|endpoint|api|request)",
+          "(?:verify|check|validate).*(?:route|endpoint|api)",
+          "test.*authenticated",
+          "test.*(?:post|get|put|delete)",
+          "authentication.*(?:test|issue|problem)",
+          "test.auth.route"
+        ]
+      }
+    },
+    "sharing-skills": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Guide for contributing skills back to upstream repository via pull requests",
+      "promptTriggers": {
+        "keywords": ["share skill", "contribute skill", "pull request", "upstream", "fork", "contribute back", "share with others"],
+        "intentPatterns": [
+          "(?:share|contribute|submit|push).*skill",
+          "(?:create|make).*(?:pull request|PR).*skill",
+          "(?:contribute|push).*upstream"
+        ]
+      }
+    },
+    "ship-learn-next": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Transform learning content into actionable Ship-Learn-Next implementation plans",
+      "promptTriggers": {
+        "keywords": ["learning content", "actionable", "implementation plan", "transcript", "article", "tutorial", "ship-learn-next", "make actionable", "turn into plan"],
+        "intentPatterns": [
+          "(?:turn|transform|convert|make).*actionable",
+          "(?:implement|apply).*(?:advice|lessons|learning)",
+          "(?:extract|create).*(?:action steps|implementation)",
+          "ship.*learn.*next"
+        ]
+      }
+    },
+    "skill-developer": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Create and manage Claude Code skills with auto-activation, triggers, and hooks",
+      "promptTriggers": {
+        "keywords": ["create skill", "skill-rules.json", "skill triggers", "hook", "skill activation", "progressive disclosure", "YAML frontmatter", "500-line rule", "add skill"],
+        "intentPatterns": [
+          "(?:create|add|make|build).*(?:skill|trigger)",
+          "(?:modify|update|edit).*skill-rules",
+          "(?:debug|fix|troubleshoot).*skill.*activation",
+          "(?:understand|explain).*(?:hooks|triggers)"
+        ]
+      }
+    },
+    "subagent-driven-development": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Execute implementation plans by dispatching fresh subagents per task with code review gates",
+      "promptTriggers": {
+        "keywords": ["subagent", "execute plan", "implementation plan", "dispatch subagent", "code review", "task by task", "fresh subagent"],
+        "intentPatterns": [
+          "(?:execute|implement|run).*plan.*(?:subagent|task)",
+          "(?:dispatch|use).*subagent",
+          "(?:implement|execute).*(?:task by task|one task)"
+        ]
+      }
+    },
+    "systematic-debugging": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Four-phase debugging framework ensuring root cause investigation before fixes",
+      "promptTriggers": {
+        "keywords": ["debug", "bug", "test failure", "unexpected behavior", "root cause", "troubleshoot", "investigate", "error", "failing"],
+        "intentPatterns": [
+          "(?:debug|fix|investigate|troubleshoot).*(?:bug|error|issue|failure)",
+          "(?:test|tests).*(?:fail|failing|broken)",
+          "(?:find|identify|locate).*(?:root cause|problem|issue)",
+          "unexpected.*behavior"
+        ]
+      }
+    },
+    "tapestry": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Unified content extraction and action planning from URLs (YouTube, articles, PDFs)",
+      "promptTriggers": {
+        "keywords": ["tapestry", "weave", "extract content", "action plan", "YouTube URL", "article URL", "make actionable", "help me plan"],
+        "intentPatterns": [
+          "tapestry.*(?:http|www|youtube)",
+          "weave.*(?:http|www|youtube)",
+          "(?:extract|download).*(?:and|then).*plan",
+          "(?:help|create).*plan.*(?:http|www|youtube)",
+          "make.*actionable.*(?:http|www|youtube)"
+        ]
+      }
+    },
+    "test-driven-development": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Write test first, watch it fail, write minimal code to pass",
+      "promptTriggers": {
+        "keywords": ["TDD", "test-driven", "write test", "failing test", "red-green-refactor", "test first", "implement feature", "bug fix"],
+        "intentPatterns": [
+          "(?:implement|add|create|build).*(?:feature|functionality|component)",
+          "(?:fix|resolve|solve).*bug",
+          "(?:write|create).*test",
+          "TDD|test.*driven"
+        ]
+      }
+    },
+    "testing-anti-patterns": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Prevent testing mock behavior and test-only methods in production code",
+      "promptTriggers": {
+        "keywords": ["mock", "test", "testing", "test-only method", "mock behavior", "integration test", "unit test"],
+        "intentPatterns": [
+          "(?:write|create|add|change).*test",
+          "(?:add|create|use).*mock",
+          "(?:test|testing).*(?:pattern|anti-pattern|mistake)"
+        ]
+      }
+    },
+    "testing-skills-with-subagents": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Test skills with pressure scenarios using RED-GREEN-REFACTOR to verify resistance to rationalization",
+      "promptTriggers": {
+        "keywords": ["test skill", "pressure scenario", "baseline test", "skill testing", "verify skill", "bulletproof skill", "rationalization"],
+        "intentPatterns": [
+          "(?:test|verify|validate).*skill",
+          "(?:create|run).*(?:pressure scenario|baseline)",
+          "(?:before|prior to).*deploy.*skill"
+        ]
+      }
+    },
+    "unity": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Unity Engine game development including C# scripting, physics, rendering, and platform features",
+      "promptTriggers": {
+        "keywords": ["Unity", "GameObject", "MonoBehaviour", "C# script", "Unity Engine", "game development", "scene", "prefab", "Rigidbody", "shader", "animation", "UI Toolkit", "VR", "AR", "XR"],
+        "intentPatterns": [
+          "Unity.*(?:project|game|development|script|component)",
+          "(?:create|add|implement).*(?:GameObject|MonoBehaviour|component)",
+          "(?:2D|3D).*(?:game|project|development)",
+          "(?:VR|AR|XR).*development"
+        ]
+      }
+    },
+    "using-git-worktrees": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Create isolated git worktrees with smart directory selection and safety verification",
+      "promptTriggers": {
+        "keywords": ["worktree", "git worktree", "isolated workspace", "feature work", "separate workspace", "implementation plan"],
+        "intentPatterns": [
+          "(?:create|setup|use).*(?:worktree|isolated.*workspace)",
+          "(?:start|begin).*feature.*(?:work|implementation)",
+          "(?:before|prior to).*(?:executing|implementing).*plan"
+        ]
+      }
+    },
+    "using-superpowers": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Mandatory workflow for finding and using skills at conversation start",
+      "promptTriggers": {
+        "keywords": ["start conversation", "new task", "check skills", "find skill", "use skill", "workflow"],
+        "intentPatterns": [
+          "(?:start|begin|starting).*(?:conversation|task|work)",
+          "(?:any|what).*skill.*(?:apply|match|relevant)"
+        ]
+      }
+    },
+    "verification-before-completion": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Require running verification commands before claiming work is complete",
+      "promptTriggers": {
+        "keywords": ["complete", "done", "fixed", "passing", "tests pass", "commit", "create PR", "claim complete", "verification"],
+        "intentPatterns": [
+          "(?:claim|say|report).*(?:complete|done|fixed|passing|ready)",
+          "(?:about to|going to).*(?:commit|push|PR|merge)",
+          "(?:tests?|build|linter).*(?:pass|succeed|clean)"
+        ]
+      }
+    },
+    "writing-plans": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Create comprehensive implementation plans with exact file paths and complete code examples",
+      "promptTriggers": {
+        "keywords": ["implementation plan", "write plan", "create plan", "detailed tasks", "engineer", "file paths", "code examples"],
+        "intentPatterns": [
+          "(?:write|create|make).*(?:plan|implementation.*plan)",
+          "(?:design|architecture).*(?:complete|done|ready).*(?:plan|implementation)",
+          "(?:detailed|comprehensive).*(?:tasks|steps)"
+        ]
+      }
+    },
+    "writing-skills": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Create skills using TDD approach - test with subagents before writing",
+      "promptTriggers": {
+        "keywords": ["create skill", "write skill", "new skill", "edit skill", "skill documentation", "SKILL.md", "test skill", "verify skill"],
+        "intentPatterns": [
+          "(?:create|write|make|build).*(?:new|a).*skill",
+          "(?:edit|modify|update).*(?:existing|current).*skill",
+          "(?:verify|test).*skill.*(?:before|prior to).*deploy"
+        ]
+      }
+    },
+    "youtube-transcript": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "Download YouTube video transcripts using yt-dlp or Whisper transcription",
+      "promptTriggers": {
+        "keywords": ["YouTube", "transcript", "download", "subtitles", "captions", "yt-dlp", "video transcript", "YouTube URL"],
+        "intentPatterns": [
+          "(?:download|get|fetch|extract).*(?:transcript|subtitles|captions)",
+          "YouTube.*(?:transcript|subtitles|captions|text)",
+          "(?:transcribe|extract).*(?:YouTube|video)"
+        ]
+      }
+    },
+    "_sc:brainstorm": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "SC COMMAND: /sc:brainstorm - Explore ideas through Socratic dialogue",
+      "promptTriggers": {
+        "keywords": ["brainstorm", "idea", "explore", "not sure how", "what approach", "think through", "figure out"],
+        "intentPatterns": [
+          "(?:brainstorm|explore|discuss).*(?:idea|design|approach|solution)",
+          "help.*(?:think through|figure out|decide)",
+          "not sure.*(?:how|what|which).*(?:approach|design|implement)",
+          "what.*(?:approach|way).*(?:should|would|could)"
+        ]
+      }
+    },
+    "_sc:plan": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "SC COMMAND: /sc:plan - Generate structured implementation plan (Round 1/3)",
+      "promptTriggers": {
+        "keywords": ["plan", "planning", "create plan", "implementation plan", "structured plan", "plan this"],
+        "intentPatterns": [
+          "(?:create|make|generate|need).*plan",
+          "plan.*(?:this|the|for|out)",
+          "how.*(?:should|do).*(?:approach|implement|build)",
+          "(?:significant|complex|major).*(?:feature|task|project)",
+          "before.*(?:implementing|starting|building)"
+        ]
+      }
+    },
+    "_sc:plan-review": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "SC COMMAND: /sc:plan-review - Stress-test plan with 5 adversarial lenses (Round 2/3)",
+      "promptTriggers": {
+        "keywords": ["review plan", "critique plan", "stress test", "challenge plan", "find gaps", "edge cases"],
+        "intentPatterns": [
+          "(?:review|critique|challenge).*plan",
+          "(?:stress.?test|validate).*plan",
+          "(?:find|identify).*(?:gaps|issues|edge cases|problems).*plan",
+          "(?:is|does).*plan.*(?:good|solid|ready)"
+        ]
+      }
+    },
+    "_sc:plan-final": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "SC COMMAND: /sc:plan-final - Consolidate into execution-ready plan (Round 3/3)",
+      "promptTriggers": {
+        "keywords": ["final plan", "finalize plan", "ready to implement", "lock in plan", "execution ready"],
+        "intentPatterns": [
+          "(?:final|finalize).*plan",
+          "(?:ready|prepare).*(?:implement|execute|build)",
+          "consolidate.*(?:plan|feedback)",
+          "lock.*(?:in|down).*plan"
+        ]
+      }
+    },
+    "_sc:research": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "SC COMMAND: /sc:research - Deep web research with adaptive strategies",
+      "promptTriggers": {
+        "keywords": ["research", "find out", "look up", "search for", "investigate", "learn about"],
+        "intentPatterns": [
+          "(?:research|investigate|find out).*(?:about|how|what|why)",
+          "(?:look up|search for).*(?:info|information|docs|documentation)",
+          "what.*(?:is|are|does).*(?:best practice|recommended|standard)"
+        ]
+      }
+    },
+    "_sc:test": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "SC COMMAND: /sc:test - Execute tests with coverage analysis",
+      "promptTriggers": {
+        "keywords": ["run tests", "test coverage", "execute tests", "testing", "test suite"],
+        "intentPatterns": [
+          "(?:run|execute).*test",
+          "(?:check|verify).*(?:test|coverage)",
+          "(?:test|testing).*(?:suite|coverage|results)"
+        ]
+      }
+    },
+    "_sc:git": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "SC COMMAND: /sc:git - Git operations with intelligent commit messages",
+      "promptTriggers": {
+        "keywords": ["commit", "push", "PR", "pull request", "git", "branch", "merge"],
+        "intentPatterns": [
+          "(?:create|make).*(?:commit|PR|pull request)",
+          "(?:push|merge).*(?:changes|branch)",
+          "git.*(?:status|diff|log)"
+        ]
+      }
+    },
+    "_sc:document": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "SC COMMAND: /sc:document - Generate documentation for code",
+      "promptTriggers": {
+        "keywords": ["document", "documentation", "docs", "readme", "docstring", "JSDoc"],
+        "intentPatterns": [
+          "(?:write|create|generate|add).*(?:docs|documentation|readme)",
+          "(?:document|explain).*(?:code|function|component|API)"
+        ]
+      }
+    },
+    "_sc:explain": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "SC COMMAND: /sc:explain - Clear explanations of code and concepts",
+      "promptTriggers": {
+        "keywords": ["explain", "how does", "what is", "understand", "walk through"],
+        "intentPatterns": [
+          "(?:explain|describe).*(?:how|what|why)",
+          "(?:how|what).*(?:does|is|works)",
+          "help.*understand",
+          "walk.*(?:me|through)"
+        ]
+      }
+    },
+    "_ultrathink": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "critical",
+      "description": "ULTRATHINK: Type 'ultrathink' for deep extended reasoning on complex problems",
+      "promptTriggers": {
+        "keywords": ["complex", "difficult", "tricky", "hard problem", "deep thinking", "careful analysis"],
+        "intentPatterns": [
+          "(?:complex|complicated|difficult|tricky|hard).*(?:problem|issue|task|decision)",
+          "(?:need|want|require).*(?:deep|careful|thorough).*(?:thinking|analysis|reasoning)",
+          "(?:architecture|design|strategy).*(?:complex|major|significant)",
+          "(?:trade.?offs?|pros.?and.?cons|compare|evaluate).*(?:options|approaches|alternatives)",
+          "(?:debug|investigate|figure out).*(?:why|how|what).*(?:wrong|broken|failing)",
+          "(?:security|performance|scalability).*(?:design|architecture|approach)"
+        ]
+      }
+    }
+  }
+}
